@@ -1,0 +1,139 @@
+workspace "E-commerce System Architecture" "A representation of an e-commerce system."{
+model {
+    group "Shop" {
+        unregistereduser = person "All users" 
+        admin = person "Administrator" "Manages the platform and oversees user activities."
+        registeredUser = person "Registered User" "Interacts with the platform to browse and purchase products."
+        unisender = softwareSystem "Unisender" "The internal Microsoft Exchange e-mail system." "Existing System"
+        paymentSystem = softwareSystem "Payment System" "Existing System"
+        gpsSystem = softwareSystem "GPS System" "The internal GEO-location system."
+        ShopSystem = softwareSystem "Internet Shop System" "Allows customers to view information about products, make orders, and make payments." {
+            mobileApp = container "Mobile App" "Provides a limited subset of the Internet Shop functionality to customers via their mobile device." "Xamarin" "Mobile App"
+            webApplication = container "Web Application" "Delivers the static content and the Internet Shop single page application." "Java and Spring MVC" "Browser"
+            BackEnd = container "Backend Service" "Spring Boot" "Handles business logic and connects to external systems." "Application" {
+                kafka = component "Broker" "Connect MS." "Broker"                 
+                inventoryService = component "Inventory Service" "Manages stock levels and inventory data." "Microservices"
+                database1 = component "Inventory Database" "Stores info about products." "Postgres DB" "Database"       
+                deliveryService = component "Delivery Service" "Calculates delivery options and manages logistics." "Microservices"
+                database2 = component "Delivery Service Database" "Stores delivery orders information." "Postgres DB" "Database" 
+                cartService = component "Cart Service" "Handles the shopping cart functionality, allowing users to add, update, and remove items from their cart. Manages the cart state, calculates totals, and interacts with other services to process orders." "Microservices"
+                database3 = component "Cart Database" "Stores information about the products in users carts." "Postgres DB" "Database"
+                emailComponent = component "E-mail Component" "Sends e-mails to users." "Microservices"
+                database4 = component "Notifications Database" "Stores info about notifications." "Postgres DB" "Database"  
+                paymentComponent = component "Make payment for Bank" "A facade onto the mainframe banking system to make payment." "Microservices"
+                database5 = component "Payments Database" "Stores info about payments." "Postgres DB" "Database"
+                authService = component "Auth Service"  "Authorization Service." "Microservices"
+                database6 = component "Auth Database" "Stores info about payments." "Postgres DB" "Database"
+                socialService = component "Social Service"  "Social Service for commenting and rating products." "Microservices"
+                database7 = component "Social Database" "Stores info about comments and rates." "Postgres DB" "Database"
+                adminService = component "Admin Service"  "Service for administration purposes." "Microservices"
+                database8 = component "Admin Database" "Stores logs of admins actions." "Postgres DB" "Database"
+                orderService = component "Order Service"  "Service for users ordering." "Microservices"
+                database9 = component "Order Database" "Stores orders info." "Postgres DB" "Database"
+                leftoversService = component "Leftovers Service"  "Service for leftovers management." "Microservices"
+                database10 = component "Leftovers Database" "Stores info about products leftovers." "Postgres DB" "Database"  
+            }
+            apiApplication = container "API Gateway" "Provides Internet Shop functionality via a JSON/HTTPS API." "Java and Spring MVC"
+            apiPostmail = container "Post-Mail API" "Provides connection to Mail Service via a JSON/HTTPS API." "Java and Spring MVC"
+            apiPayment = container "Payment API" "Provides connection to Bank Systems via a JSON/HTTPS API." "Java and Spring MVC"
+            apiGPS = container "GEO-Location API" "Provides connection to Location Services via a JSON/HTTPS API." "Java and Spring MVC"
+        }
+    }
+    // Связи между сущностями
+    unregistereduser -> mobileApp "Uses" "HTTPS"
+    unregistereduser -> webApplication "Uses" "HTTPS"
+    registeredUser -> mobileApp "Uses" "HTTPS"
+    registeredUser -> webApplication "Uses" "HTTPS"
+    admin -> webApplication "Manages" "HTTPS"
+    webApplication -> apiApplication "Uses" "JSON/HTTPS"
+    mobileApp -> apiApplication "Uses" "JSON/HTTPS"
+    apiApplication -> BackEnd "Sends requests to" "JSON/HTTPS"
+    BackEnd -> apiPostmail "Connect to mail-services" "JSON/HTTPS"
+    BackEnd -> apiPayment "Connect to Bank-services" "JSON/HTTPS"
+    BackEnd -> apiGPS "Connect to GPS-services" "JSON/HTTPS"
+    inventoryService -> database1 "Store data about products" "Postgres"
+    deliveryService -> database2 "Store data about orders deliveries" "Postgres"
+    cartService -> database3 "Store data about products in users carts" "Postgres"
+    emailComponent -> database4 "Store data about notifications" "Postgres"
+    paymentComponent -> database5 "Store data about payments" "Postgres"
+    authService -> database6 "Store data about users" "Postgres"
+    socialService -> database7 "Store data about users comments and rates for products" "Postgres"
+    adminService -> database8 "Store logs of admin actions" "Postgres"
+    orderService -> database9 "Store users orders" "Postgres"
+    leftoversService -> database10 "Store products lefovers" "Postgres"
+    
+    deliveryService -> apiGPS "Connect to GPS-services" "JSON/HTTPS"
+    emailComponent -> apiPostmail "Connect to mail-services" "JSON/HTTPS"
+    paymentComponent -> apiPayment "Connect to Bank-services" "JSON/HTTPS"
+    apiPostmail -> unisender "Sends emails via" "SMTP"
+    apiPayment -> paymentSystem  "Processes payments via" "HTTPS"
+    apiGPS -> gpsSystem  "Processes geo locations via" "HTTPS"
+    paymentComponent -> kafka "Sends cart data to" "Kafka"
+    emailComponent -> kafka "Sends cart data to" "Kafka"
+    cartService -> kafka "Sends cart data to" "Kafka"
+    deliveryService -> kafka "Sends delivery requests to" "Kafka"
+    inventoryService -> kafka "Publishes inventory updates to" "Kafka"
+    authService -> kafka "Publishes users updates to" "Kafka"
+    socialService -> kafka "Publishes comments and rates to" "Kafka"
+    adminService -> kafka "Sends admin actions data to" "Kafka"
+    orderService -> kafka "Publishes orders data to" "Kafka"
+    leftoversService -> kafka "Publishes leftovers info to" "Kafka"
+}
+views {
+    // System Context Diagram
+    systemContext ShopSystem "SystemContext" {
+        include *
+        autoLayout
+        description "Displays the Internet Shop System and its interactions with users and external systems."
+    }
+    // Container Diagram
+    container ShopSystem "Containers" {
+        include *
+        autoLayout
+        description "Details the containers of the Internet Shop System and their interactions."
+    } 
+    // Component Diagram for Backend
+    component Backend "Components" {
+        include *
+        autoLayout
+        description "Shows the internal components of the Backend Service."
+    }
+    component apiApplication "Components1" {
+        include *
+        autoLayout
+        description "Details the containers of the Internet Shop System and their interactions."
+    }
+    // Styles
+    styles {
+        element "Person" {
+            shape Person
+            color #ffffff
+            background #08427b
+        }
+        element "Software System" {
+            color #ffffff
+            background #1168bd
+        }
+        element "Container" {
+            color #ffffff
+            background #438dd5
+        }
+        element "Component" {
+            background #85bbf0
+            color #000000
+        }
+        element "Database" {
+            shape Cylinder
+            background #f5da81
+        }
+        element "External System" {
+            color #000000
+            background #85bbf0
+        }
+        element "Broker" {
+            shape Cylinder
+            background #f2f2f2
+        }
+    }
+  }
+}
