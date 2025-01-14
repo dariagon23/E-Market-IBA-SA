@@ -1,0 +1,765 @@
+openapi: 3.0.0
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/DariaGo/IBAtestAPI/1.0
+info:
+  version: '1.0'
+  title: E-Market API
+  description: 'E-Market for hobbies and art purchases'
+  contact: 
+    email: dariagoapi@gmail.com
+tags:
+  - name: user
+    description: 'All users with diffrent roles'
+  - name: client
+    description: 'Authorized user'
+  - name: admin
+    description: 'Admin of the service'
+paths: 
+  /login:
+    post:
+      tags: 
+        - user
+      summary: 'Log in user into the system'
+      description: 'Log in user into the system with login and password'
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+              type: object
+              required:
+                - userlogin
+                - userpassword
+              properties:
+                userlogin:
+                  type: 'string'
+                  description: 'The username (login) of the user'
+                  example: 'dariaGo@gmail.com'
+                userpassword:
+                  type: 'string'
+                  format: password 
+                  description: 'The password of the user'
+                  example: 'passssword988675432'
+      responses:
+        '200':
+          description: 'Successful operation of login'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accesstoken:
+                    type: string
+                    description: 'The Auth Token'
+                    example: 'jrlskjdgkjxdfghjkxdhgfku'
+        '400':
+          description: 'Bad request'
+        '401':
+          description: 'Invalid login or password'
+        '403':
+          description: 'The access is firbidden'
+        '500':
+          description: 'Internal Server Error'
+ 
+  /categories/{categoryId}/products/{productId}/items:
+    get:
+      tags:
+        - user
+      summary: 'View all of the items of the product from the category'
+      description: 'View all items'
+      parameters:
+        - name: categoryId
+          in: path
+          description: 'Id of the category'
+          required: true
+          schema:
+            type: integer
+            example: 123
+        - name: productId
+          in: path
+          description: 'Id of the product'
+          required: true
+          schema:
+            type: integer
+            example: 143
+      responses:
+        '200':
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/items'
+        '404':
+          description: 'Not Found'
+        '500':
+          description: 'Internal Server Error'
+          
+    post:
+      tags:
+        - admin
+      summary: 'Add a new item to the catalog'
+      description: 'Add a new item to the catalog'
+      parameters:
+        - name: categoryId
+          in: path
+          description: 'Id of the category'
+          required: true
+          schema:
+            type: integer
+            example: 123
+        - name: productId
+          in: path
+          description: 'Id of the product'
+          required: true
+          schema:
+            type: integer
+            example: 143
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/itemNew'
+      responses:
+        '201':
+          description: 'Created'
+        '400':
+          description: 'Bad Request'
+        '500':
+          description: 'Internal Server Error'
+          
+  /categories/{categoryId}/products/{productId}/items/{itemId}:
+    get:
+      tags:
+        - user
+      summary: 'View the item of the product from the category'
+      description: 'View the item'
+      parameters:
+        - name: categoryId
+          in: path
+          description: 'Id of the category'
+          required: true
+          schema:
+            type: integer
+            example: 123
+        - name: productId
+          in: path
+          description: 'Id of the product'
+          required: true
+          schema:
+            type: integer
+            example: 143
+        - name: itemId
+          in: path
+          description: 'Id of the item'
+          required: true
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: 'The item is found'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/item'
+        '404':
+          description: 'Not Found'
+        '500':
+          description: 'Internal Server Error'
+          
+    patch:
+      tags:
+        - admin
+      summary: 'Update info about the item'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: categoryId
+          in: path
+          description: 'Id of the category'
+          required: true
+          schema:
+            type: integer
+            example: 123
+        - name: productId
+          in: path
+          description: 'Id of the product'
+          required: true
+          schema:
+            type: integer
+            example: 143
+        - name: itemId
+          in: path
+          description: 'Id of the item'
+          required: true
+          schema:
+            type: integer
+            example: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/item'
+      responses:
+        '200':
+          description: 'Successfully update of the item'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/item'
+        '400':
+          description: 'Bad request'
+        '404':
+          description: 'Not Found'
+        '500':
+          description: 'Internal Server Error'
+
+    delete:
+      tags:
+        - admin
+      summary: 'Delete info obout the item'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: categoryId
+          in: path
+          description: 'Id of the category'
+          required: true
+          schema:
+            type: integer
+            example: 123
+        - name: productId
+          in: path
+          description: 'Id of the product'
+          required: true
+          schema:
+            type: integer
+            example: 143
+        - name: itemId
+          in: path
+          description: 'Id of the item'
+          required: true
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: 'OK'
+        '400':
+          description: 'Bad Request'
+        '404':
+          description: 'Not Found'
+        '500':
+          description: 'Internal Server Error'
+
+  /categories/{categoryId}/products:
+    post:
+      tags:
+        - admin
+      summary: 'Add a new product line to the catalog'
+      description: 'Add a new product line to the catalog'
+      parameters:
+        - name: categoryId
+          in: path
+          description: 'Id of the category'
+          required: true
+          schema:
+            type: integer
+            example: 123
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/product'
+      responses:
+        '201':
+          description: 'Created'
+        '400':
+          description: 'Bad Request'
+        '500':
+          description: 'Internal Server Error'
+    
+    get:
+      tags:
+        - user
+      summary: 'View all of the products from the category'
+      description: 'View all products'
+      parameters:
+        - name: categoryId
+          in: path
+          description: 'Id of the category'
+          required: true
+          schema:
+            type: integer
+            example: 123
+      responses:
+        '200':
+          description: 'Products from the category'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/products'
+        '404':
+          description: 'Not Found'
+        '500':
+          description: 'Internal Server Error'
+
+  /categories/{categoryId}/products/{productId}:
+    patch:
+      tags:
+        - admin
+      summary: 'Update info about the product'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: categoryId
+          in: path
+          description: 'Id of the category'
+          required: true
+          schema:
+            type: integer
+            example: 123
+        - name: productId
+          in: path
+          description: 'Id of the product'
+          required: true
+          schema:
+            type: integer
+            example: 143
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/product'
+      responses:
+        '200':
+          description: 'Successfully update of the product'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/product'
+        '400':
+          description: 'Bad request'
+        '404':
+          description: 'Not Found'
+        '500':
+          description: 'Internal Server Error'
+
+    delete:
+      tags:
+        - admin
+      summary: 'Delete info obout the product'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: categoryId
+          in: path
+          description: 'Id of the category'
+          required: true
+          schema:
+            type: integer
+            example: 123
+        - name: productId
+          in: path
+          description: 'Id of the product'
+          required: true
+          schema:
+            type: integer
+            example: 143
+      responses:
+        '200':
+          description: 'OK'
+        '400':
+          description: 'Bad Request'
+        '404':
+          description: 'Not Found'
+        '500':
+          description: 'Internal Server Error'
+
+  /orders/{orderId}/orderdetails:
+    post:
+      tags:
+        - client
+      summary: 'Add an item to the order'
+      description: 'Add an item to the order'
+      parameters:
+        - name: orderId
+          in: path
+          description: Id of the client's order
+          required: true
+          schema:
+            type: integer
+            example: 19971003
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/orderDetailNew'
+      responses:
+        '201':
+          description: 'Created'
+        '400':
+          description: 'Bad Request'
+        '401':
+          description: 'Anauthorized'
+        '500':
+          description: 'Internal Server Error'
+    
+    get:
+      tags:
+        - client
+      summary: 'View all of the items in the order'
+      description: View all of the items in the client's order
+      parameters:
+        - name: orderId
+          in: path
+          description: 'Id of the category'
+          required: true
+          schema:
+            type: integer
+            example: 19971003
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: 'Items in the order'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/orderDetails'
+        '401':
+          description: 'Anauthorized'
+        '404':
+          description: 'Not Found'
+        '500':
+          description: 'Internal Server Error'
+  
+  /orders/{orderId}/orderdetails/{orderdetailId}:       
+    patch:
+      tags:
+        - client
+      summary: 'Update info about the order detail'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: orderId
+          in: path
+          description: 'Id of the order'
+          required: true
+          schema:
+            type: integer
+            example: 19971003
+        - name: orderdetailId
+          in: path
+          description: 'Id of the order detail'
+          required: true
+          schema:
+            type: integer
+            example: 8
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/orderDetail'
+      responses:
+        '200':
+          description: 'Successfully update of the product'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/orderDetail'
+        '400':
+          description: 'Bad request'
+        '401': 
+          description: 'Anathorized'
+        '404':
+          description: 'Not Found'
+        '500':
+          description: 'Internal Server Error'
+    
+    delete:
+      tags:
+        - client
+      summary: 'Delete info obout the item in the order'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: orderId
+          in: path
+          description: 'Id of the order'
+          required: true
+          schema:
+            type: integer
+            example: 19971003
+        - name: orderdetailId
+          in: path
+          description: 'Id of the product'
+          required: true
+          schema:
+            type: integer
+            example: 8
+      responses:
+        '200':
+          description: 'OK'
+        '400':
+          description: 'Bad Request'
+        '401':
+          description: 'Anathorized'
+        '404':
+          description: 'Not Found'
+        '500':
+          description: 'Internal Server Error'
+  
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  
+  schemas:
+    
+    item:
+      type: object
+      required:
+        - itemId
+        - itemName
+        - itemDescription
+        - itemPrice
+      properties:
+        itemId:
+          type: integer
+          description: 'ID of the item'
+          example: 1
+        itemName:
+          type: string
+          description: 'the name of the item'
+          example: 'Цветные карандаши "Радуга"'
+        itemDescription:
+          type: string
+          description: 'the description of the item'
+          example: 'У нас самые яркие цвета!'
+        itemPrice:
+          type: integer
+          description: 'Price of the item'
+          example: 4.32
+    
+    itemNew:
+      type: object
+      required:
+        - itemName
+        - itemDescription
+        - itemCount
+        - itemMeasure
+        - itemPrice
+      properties:
+        itemName:
+          type: string
+          description: 'The name of the item'
+          example: 'Цветные карандаши "Радуга"'
+        itemDescription:
+          type: string
+          description: 'the description of the item'
+          example: 'У нас самые яркие цвета!'
+        itemCount:
+          type: integer
+          description: 'The amount of the item'
+          example: 500
+        itemMeasure: 
+          type: string
+          description: 'The measure type of the new item'
+          example: 'шт.'
+        itemPrice:
+          type: integer
+          description: 'Price of the item'
+          example: 4.32
+          
+    items:
+      type: object
+      required:
+        - categoryId
+        - categoryName
+        - productId
+        - productName
+        - items
+      properties:
+        categoryId:
+          type: integer
+          description: 'ID of the category'
+          example: 123
+        categoryName:
+          type: string
+          description: 'the name of the category'
+          example: 'Канцелярия'
+        productId:
+          type: integer
+          description: 'ID of the product'
+          example: 143
+        productName:
+          type: string
+          description: 'the name of the product'
+          example: 'Цветные карандаши'
+        items:
+          type: array
+          items: 
+            $ref: '#/components/schemas/item'
+  
+    product:
+      type: object
+      required:
+        - productId
+        - productName
+        - productDescription
+      properties:
+        productId:
+          type: integer
+          description: 'ID of the product'
+          example: 143
+        productName:
+          type: string
+          description: 'the name of the product'
+          example: 'Цветные карандаши'
+        productDescription:
+          type: string
+          description: 'the description of the product'
+          example: 'Цветные ручки с различными стержнями для офиса и творчества'
+          
+          
+    products:
+      type: object
+      required:
+        - categoryId
+        - categoryName
+        - products
+      properties:
+        categoryId:
+          type: integer
+          description: 'ID of the category'
+          example: 123
+        categoryName:
+          type: string
+          description: 'the name of the category'
+          example: 'Канцелярия'
+        products:
+          type: array
+          items: 
+            $ref: '#/components/schemas/product'
+            
+    orderDetailNew:
+      type: object
+      required:
+        - categoryId
+        - categoryName
+        - productId
+        - productName
+        - itemName
+        - itemCount
+        - itemPrice
+        - itemSumma
+      properties:
+        categoryId:
+          type: integer
+          description: 'Id of the category'
+          example: 123
+        categoryName:
+          type: string
+          description: 'the name of the category'
+          example: 'Канцелярия'
+        productId:
+          type: integer
+          description: 'Id of the product'
+          example: 143
+        productName:
+          type: string
+          description: 'the name of the product'
+          example: 'Цветные карандаши'
+        itemName:
+          type: string
+          description: 'The name of the item'
+          example: 'Цветные карандаши "Радуга"'
+        itemCount:
+          type: integer
+          description: 'The amount of the item'
+          example: 2
+        itemPrice:
+          type: integer
+          description: 'Price of the item'
+          example: 4.32
+        itemSumma:
+          type: integer
+          description: 'Summa of the items in the order'
+          example: 8.64
+          
+    orderDetail:
+      type: object
+      required:
+        - orderdetailId
+        - orderId
+        - itemId
+        - itemName
+        - itemCount
+        - itemPrice
+        - itemSumma
+      properties:
+        orderdetailId:
+          type: integer
+          description: 'Id of the order detail'
+          example: 8
+        orderId:
+          type: integer
+          description: 'Id of the order'
+          example: 19971003
+        itemId:
+          type: integer
+          description: 'Id of the item in the order'
+          example: 1
+        itemName:
+          type: string
+          description: 'The name of the item'
+          example: 'Цветные карандаши "Радуга"'
+        itemCount:
+          type: integer
+          description: 'The amount of the item'
+          example: 2
+        itemPrice:
+          type: integer
+          description: 'the Price of the item'
+          example: 4.32
+        itemSumma:
+          type: integer
+          description: 'Summa of the items in the order'
+          example: 8.64
+          
+    orderDetails:
+      type: object
+      required:
+        - orderId
+        - orderSumma
+        - orderDetails
+      properties:
+        orderId:
+          type: integer
+          description: 'ID of the order'
+          example: 19971003
+        orderSumma:
+          type: integer
+          description: 'total summa of the order'
+          example: 8.64
+        orderDetails:
+          type: array
+          items: 
+            $ref: '#/components/schemas/orderDetail'
