@@ -1,0 +1,41 @@
+select * from client_order;
+
+/*выборка продаж на дату 2023-06-13*/
+select c.client_id, c.first_name, c.last_name, co.client_cart_sum, co.create_time from client c
+left join client_order co on c.client_id = co.client_id 
+where date(co.create_time) = '2023-06-13';
+
+/*выборка продаж на период от 2023-01-01 по 2024-01-01*/
+select c.client_id, c.first_name, c.last_name, co.client_cart_sum, co.create_time from client c
+left join client_order co on c.client_id = co.client_id 
+where date(co.create_time) BETWEEN '2023-01-01' AND '2024-01-01';
+
+/*выборка по покупкам со стоимостью больше или равной средней по всем покупкам*/
+select client_id, client_cart_sum from client_order
+where client_cart_sum >= 
+(select avg(client_cart_sum) from client_order);
+
+/*количество покупок со стоимостью больше или равной средней по всем покупкам*/
+select count(client_cart_sum) from client_order
+where client_cart_sum >= 
+(select avg(client_cart_sum) from client_order);
+
+/*сумма всех покупок со стоимостью меньше средней по всем покупкам*/
+select sum(client_cart_sum) from client_order
+where client_cart_sum < 
+(select avg(client_cart_sum) from client_order);
+
+/*средняя сумма продаж определенной категории товаров за указанный промежуток времени*/
+select pg.group_name, count(*) as countProd, round(avg(cod.amount_product_sum), 2) as AvgSum from product p
+left join product_group pg on p.product_group_id =pg.product_group_id
+left join client_order_detail cod on p.product_id = cod.product_id
+left join client_order co on cod.client_cart_id = co.client_cart_id
+where date(co.create_time) BETWEEN '2023-09-01' AND '2024-01-01'
+group by pg.group_name;
+
+/*редставление на  товары, которые есть в наличии на складе*/
+CREATE VIEW warehouse AS
+    select product_id , product_name, count_of_products_warehouse from product 
+    where count_of_products_warehouse > 0;
+   
+select p.product_id , p.product_name, p.count_of_products_warehouse from product p;

@@ -1,0 +1,78 @@
+Table Item {
+  itemId uuid [primary key]
+  itemName varchar(100)
+  itemDescription varchar(512)
+  itemCount decimal(5,2)
+  itemMeasure int
+  itemPrice decimal(5,2)
+}
+
+Table Measure {
+  measureId int [primary key]
+  measureName varchar(20)
+}
+
+Table Product {
+  productId int [primary key]
+  productName varchar(100)
+  productDescription varchar(512)
+  categoryId int
+}
+
+Table Category {
+  categoryId int [primary key]
+  categoryName varchar(100)
+}
+
+Table ItemProduct {
+  itemId uuid
+  productId int
+}
+
+Table Customer {
+  customerId uuid
+  customerName varchar(100)
+  customerAge date 
+  customerAddress varchar(256)
+  customerEmail varchar(50)
+  customerPhone varchar(20)
+  customerGender int
+  statusId int
+  customerSumma decimal(5,2)
+}
+
+Table Gender {
+  genderId int
+  genderName varchar(10)
+}
+
+Table ClientStatus {
+  statusId int
+  statusName varchar(50)
+  statusMinSale decimal(3,2)
+  statusMaxSale desimal(3,2)
+}
+
+Table Order {
+  orderUniqueNum uuid [primary key]
+  customerId uuid
+  orderDate timestamp
+  totalSum decimal(5,2)
+}
+
+Table OrderDetails {
+  orderUniqueNum uuid
+  itemId uuid
+  count decimal(5,2)
+  summa decimal(5,2)
+}
+
+Ref: ItemProduct.itemId > Item.itemId
+Ref: ItemProduct.productId > Product.productId
+Ref: Customer.statusId - ClientStatus.statusId
+Ref: Customer.customerId < Order.customerId
+Ref: Order.orderUniqueNum < OrderDetails.orderUniqueNum
+Ref: Item.itemId < OrderDetails.itemId
+Ref: Customer.customerGender - Gender.genderId
+Ref: Category.categoryId < Product.categoryId
+Ref: Item.itemMeasure - Measure.measureId
