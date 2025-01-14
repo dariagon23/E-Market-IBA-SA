@@ -1,0 +1,62 @@
+{
+  "$schema": "http://json-schema.org/draft-03/schema#",
+  "type": "object",
+  "properties": {
+    "kafkaCorrelationId": {
+      "description": "Идентификатор для связи запроса с ответом",
+      "type": "string"
+    },
+    "messageId": {
+      "description": "Уникальный идентификатор сообщения",
+      "type": "string"
+    },
+    "sourceSystemId": {
+      "description": "Уникальный идентификатор системы отправителя сообщения",
+      "type": "string"
+    },
+    "createDateTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Дата и время создания сообщения"
+    },
+    "operationType": {
+      "type": "integer",
+      "description": "Тип операции клиента (0 - запрос на фильтрацию, 1 - запрос на просмотр страницы с товаром)"
+    },
+    "values": {
+      "description": "Набор атрибутов в сообщении",
+      "$ref": "#/definitions/valuesPayload"
+    },
+    "valuesProperties": {
+      "description": "Набор атрибутов в сообщении",
+      "type": "object",
+      "properties": {
+        "clientId": {
+          "description": "Уникальный идентификатор клиента",
+          "type": "string"
+        },
+        "itemId": {
+          "description": "Уникальный идентификатор товара в системе",
+          "type": "string"
+        },
+        "filterProperties": {
+          "type": "array",
+          "items": {
+            "description": "Набор параметров фильтрации/поиска",
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "required": [
+      "kafkaCorrelationId",
+      "orderId",
+      "sourceSystemId",
+      "operationType",
+      "createDateTime",
+      "valuesProperties"
+    ],
+    "additionalProperties": false
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "kafkaCorrelationId": {
+      "description": "Идентификатор для связи запроса с ответом",
+      "type": "string"
+    },
+    "messageId": {
+      "description": "Уникальный идентификатор сообщения",
+      "type": "string"
+    },
+    "sourceSystemId": {
+      "description": "Уникальный идентификатор системы отправителя сообщения",
+      "type": "string"
+    },
+    "createDateTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Дата и время создания сообщения"
+    },
+    "operationType": {
+      "type": "integer",
+      "description": "Тип операции, описанной в сообщении (0 - сообщение с информацией по доставке, 1 - сообщение на оформление доставки, 2 - сообщение на изменение условий доставки)"
+    },
+    "values": {
+      "description": "Набор атрибутов в сообщении",
+      "$ref": "#/definitions/valuesPayload"
+    },
+    "valuesProperties": {
+      "description": "Набор атрибутов в сообщении",
+      "type": "object",
+      "properties": {
+        "clientId": {
+          "description": "Уникальный идентификатор клиента",
+          "type": "string"
+        },
+        "orderId": {
+          "description": "Уникальный идентификатор заказа клиента",
+          "type": "string"
+        },
+        "deliveryId": {
+          "description": "Уникальный идентификатор доставки",
+          "type": "string"
+        },
+        "expectDeliveryDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Ожидаемая дата и время доставки"
+        },
+        "deliveryType": {
+          "description": "Тип доставки",
+          "type": "string"
+        },
+        "deliveryComment": {
+          "description": "Комментарий к доставке",
+          "type": "string"
+        }
+      },
+      "required": [
+        "clientId",
+        "messageId",
+        "deliveryId"
+      ],
+      "additionalProperties": true
+    },
+    "required": [
+      "kafkaCorrelationId",
+      "orderId",
+      "sourceSystemId",
+      "operationType",
+      "createDateTime",
+      "valuesProperties"
+    ],
+    "additionalProperties": false
+  }
+}
