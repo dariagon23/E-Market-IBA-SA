@@ -1,0 +1,846 @@
+{
+	"info": {
+		"_postman_id": "ca91a7dd-c429-4049-9d14-2653d16bf58c",
+		"name": "IBA SA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39279356"
+	},
+	"item": [
+		{
+			"name": "getUsers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users?page=2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 OK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://reqres.in/api/users?page=2",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"users"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 15 Jan 2025 17:00:53 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"group\":\"heroku-nel\",\"max_age\":3600,\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?ts=1736959561&sid=c4c9725f-1ab0-44d8-820f-430df2718e11&s=gLxlwGgN70qqBTVxhqvCwJLAFq6CvqdGJLmaCdR7Dc8%3D\"}]}"
+						},
+						{
+							"key": "Reporting-Endpoints",
+							"value": "heroku-nel=https://nel.heroku.com/reports?ts=1736959561&sid=c4c9725f-1ab0-44d8-820f-430df2718e11&s=gLxlwGgN70qqBTVxhqvCwJLAFq6CvqdGJLmaCdR7Dc8%3D"
+						},
+						{
+							"key": "Nel",
+							"value": "{\"report_to\":\"heroku-nel\",\"max_age\":3600,\"success_fraction\":0.005,\"failure_fraction\":0.05,\"response_headers\":[\"Via\"]}"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"440-ZjsmMKR8P3usr2uJZbOCGCxC3Uw\""
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=14400"
+						},
+						{
+							"key": "CF-Cache-Status",
+							"value": "HIT"
+						},
+						{
+							"key": "Age",
+							"value": "892"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "90276caf3dabc56b-IAD"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "br"
+						},
+						{
+							"key": "server-timing",
+							"value": "cfL4;desc=\"?proto=TCP&rtt=2186&min_rtt=1974&rtt_var=892&sent=2&recv=5&lost=0&retrans=0&sent_bytes=219&recv_bytes=965&delivery_rate=733535&cwnd=248&unsent_bytes=0&cid=1e79b1499015a98b&ts=34&x=0\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"page\": 2,\n    \"per_page\": 6,\n    \"total\": 12,\n    \"total_pages\": 2,\n    \"data\": [\n        {\n            \"id\": 7,\n            \"email\": \"michael.lawson@reqres.in\",\n            \"first_name\": \"Michael\",\n            \"last_name\": \"Lawson\",\n            \"avatar\": \"https://reqres.in/img/faces/7-image.jpg\"\n        },\n        {\n            \"id\": 8,\n            \"email\": \"lindsay.ferguson@reqres.in\",\n            \"first_name\": \"Lindsay\",\n            \"last_name\": \"Ferguson\",\n            \"avatar\": \"https://reqres.in/img/faces/8-image.jpg\"\n        },\n        {\n            \"id\": 9,\n            \"email\": \"tobias.funke@reqres.in\",\n            \"first_name\": \"Tobias\",\n            \"last_name\": \"Funke\",\n            \"avatar\": \"https://reqres.in/img/faces/9-image.jpg\"\n        },\n        {\n            \"id\": 10,\n            \"email\": \"byron.fields@reqres.in\",\n            \"first_name\": \"Byron\",\n            \"last_name\": \"Fields\",\n            \"avatar\": \"https://reqres.in/img/faces/10-image.jpg\"\n        },\n        {\n            \"id\": 11,\n            \"email\": \"george.edwards@reqres.in\",\n            \"first_name\": \"George\",\n            \"last_name\": \"Edwards\",\n            \"avatar\": \"https://reqres.in/img/faces/11-image.jpg\"\n        },\n        {\n            \"id\": 12,\n            \"email\": \"rachel.howell@reqres.in\",\n            \"first_name\": \"Rachel\",\n            \"last_name\": \"Howell\",\n            \"avatar\": \"https://reqres.in/img/faces/12-image.jpg\"\n        }\n    ],\n    \"support\": {\n        \"url\": \"https://contentcaddy.io?utm_source=reqres&utm_medium=json&utm_campaign=referral\",\n        \"text\": \"Tired of writing endless social media content? Let Content Caddy generate it for you.\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "createUsers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response 'name' matches Request 'name'\", function () {\r",
+							"    let requestBody = pm.request.body ? JSON.parse(pm.request.body.raw) : {};\r",
+							"    let responseBody = pm.response.json();\r",
+							"    pm.expect(responseBody.name).to.eql(requestBody.name);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n    \"job\": \"SA\",\r\n    \"name\": \"Dora\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "201 Created",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n    \"name\": \"morpheus\",\r\n    \"job\": \"team leader\"\r\n    },\r\n    {\r\n        \"name\":\"terra\",\r\n        \"job\":\"system analyst\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://reqres.in/api/users",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 15 Jan 2025 17:08:20 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "81"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"group\":\"heroku-nel\",\"max_age\":3600,\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?ts=1736960900&sid=c4c9725f-1ab0-44d8-820f-430df2718e11&s=JeYoxrMWdLKSe4XBNH08JDlv%2BnLZtWv3HHbcOZB1Hsk%3D\"}]}"
+						},
+						{
+							"key": "Reporting-Endpoints",
+							"value": "heroku-nel=https://nel.heroku.com/reports?ts=1736960900&sid=c4c9725f-1ab0-44d8-820f-430df2718e11&s=JeYoxrMWdLKSe4XBNH08JDlv%2BnLZtWv3HHbcOZB1Hsk%3D"
+						},
+						{
+							"key": "Nel",
+							"value": "{\"report_to\":\"heroku-nel\",\"max_age\":3600,\"success_fraction\":0.005,\"failure_fraction\":0.05,\"response_headers\":[\"Via\"]}"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"51-+1FdTkxzu7t4Dk7zFystomd6+Tc\""
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						},
+						{
+							"key": "CF-Cache-Status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "90277799ccb472e9-IAD"
+						},
+						{
+							"key": "server-timing",
+							"value": "cfL4;desc=\"?proto=TCP&rtt=1869&min_rtt=1869&rtt_var=701&sent=3&recv=5&lost=0&retrans=0&sent_bytes=219&recv_bytes=1153&delivery_rate=773504&cwnd=247&unsent_bytes=0&cid=8444a97d70fc7e4d&ts=175&x=0\""
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"name\": \"morpheus\",\n        \"job\": \"team leader\"\n    },\n    {\n        \"name\": \"terra\",\n        \"job\": \"system analyst\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "getUser",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/api/users?id=1",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 OK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/users",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 15 Jan 2025 17:43:24 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"group\":\"heroku-nel\",\"max_age\":3600,\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?ts=1736887034&sid=c4c9725f-1ab0-44d8-820f-430df2718e11&s=gOuNQ76Qbe7xQ9IDnC3Mt%2BFYy38fSV0aUcEuUIfWfZw%3D\"}]}"
+						},
+						{
+							"key": "Reporting-Endpoints",
+							"value": "heroku-nel=https://nel.heroku.com/reports?ts=1736887034&sid=c4c9725f-1ab0-44d8-820f-430df2718e11&s=gOuNQ76Qbe7xQ9IDnC3Mt%2BFYy38fSV0aUcEuUIfWfZw%3D"
+						},
+						{
+							"key": "Nel",
+							"value": "{\"report_to\":\"heroku-nel\",\"max_age\":3600,\"success_fraction\":0.005,\"failure_fraction\":0.05,\"response_headers\":[\"Via\"]}"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"41e-bY3U72nulxuwNd/TmihMEHjLmek\""
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=14400"
+						},
+						{
+							"key": "CF-Cache-Status",
+							"value": "HIT"
+						},
+						{
+							"key": "Age",
+							"value": "3790"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "9027aaf88c24e5c1-IAD"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "br"
+						},
+						{
+							"key": "server-timing",
+							"value": "cfL4;desc=\"?proto=TCP&rtt=2218&min_rtt=2050&rtt_var=889&sent=3&recv=5&lost=0&retrans=0&sent_bytes=2820&recv_bytes=703&delivery_rate=1412682&cwnd=230&unsent_bytes=0&cid=46855491ca0012a8&ts=39&x=0\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"page\": 1,\n    \"per_page\": 6,\n    \"total\": 12,\n    \"total_pages\": 2,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"email\": \"george.bluth@reqres.in\",\n            \"first_name\": \"George\",\n            \"last_name\": \"Bluth\",\n            \"avatar\": \"https://reqres.in/img/faces/1-image.jpg\"\n        },\n        {\n            \"id\": 2,\n            \"email\": \"janet.weaver@reqres.in\",\n            \"first_name\": \"Janet\",\n            \"last_name\": \"Weaver\",\n            \"avatar\": \"https://reqres.in/img/faces/2-image.jpg\"\n        },\n        {\n            \"id\": 3,\n            \"email\": \"emma.wong@reqres.in\",\n            \"first_name\": \"Emma\",\n            \"last_name\": \"Wong\",\n            \"avatar\": \"https://reqres.in/img/faces/3-image.jpg\"\n        },\n        {\n            \"id\": 4,\n            \"email\": \"eve.holt@reqres.in\",\n            \"first_name\": \"Eve\",\n            \"last_name\": \"Holt\",\n            \"avatar\": \"https://reqres.in/img/faces/4-image.jpg\"\n        },\n        {\n            \"id\": 5,\n            \"email\": \"charles.morris@reqres.in\",\n            \"first_name\": \"Charles\",\n            \"last_name\": \"Morris\",\n            \"avatar\": \"https://reqres.in/img/faces/5-image.jpg\"\n        },\n        {\n            \"id\": 6,\n            \"email\": \"tracey.ramos@reqres.in\",\n            \"first_name\": \"Tracey\",\n            \"last_name\": \"Ramos\",\n            \"avatar\": \"https://reqres.in/img/faces/6-image.jpg\"\n        }\n    ],\n    \"support\": {\n        \"url\": \"https://contentcaddy.io?utm_source=reqres&utm_medium=json&utm_campaign=referral\",\n        \"text\": \"Tired of writing endless social media content? Let Content Caddy generate it for you.\"\n    }\n}"
+				},
+				{
+					"name": "200 OK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/users?id=1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"users"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 15 Jan 2025 17:44:53 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"group\":\"heroku-nel\",\"max_age\":3600,\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?ts=1736960790&sid=c4c9725f-1ab0-44d8-820f-430df2718e11&s=uF3%2BMfpBg%2FTZPfx%2FkaH0EZ42WViWgUhjardN95kz9v8%3D\"}]}"
+						},
+						{
+							"key": "Reporting-Endpoints",
+							"value": "heroku-nel=https://nel.heroku.com/reports?ts=1736960790&sid=c4c9725f-1ab0-44d8-820f-430df2718e11&s=uF3%2BMfpBg%2FTZPfx%2FkaH0EZ42WViWgUhjardN95kz9v8%3D"
+						},
+						{
+							"key": "Nel",
+							"value": "{\"report_to\":\"heroku-nel\",\"max_age\":3600,\"success_fraction\":0.005,\"failure_fraction\":0.05,\"response_headers\":[\"Via\"]}"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"152-u+PREu/p8Opn/uEvEGESR7Dst7c\""
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=14400"
+						},
+						{
+							"key": "CF-Cache-Status",
+							"value": "HIT"
+						},
+						{
+							"key": "Age",
+							"value": "2303"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "9027ad25abee6fd3-IAD"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "br"
+						},
+						{
+							"key": "server-timing",
+							"value": "cfL4;desc=\"?proto=TCP&rtt=2211&min_rtt=2000&rtt_var=745&sent=3&recv=6&lost=0&retrans=0&sent_bytes=2819&recv_bytes=708&delivery_rate=1433663&cwnd=251&unsent_bytes=0&cid=d7f93bf3a12d4ac9&ts=28&x=0\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"id\": 1,\n        \"email\": \"george.bluth@reqres.in\",\n        \"first_name\": \"George\",\n        \"last_name\": \"Bluth\",\n        \"avatar\": \"https://reqres.in/img/faces/1-image.jpg\"\n    },\n    \"support\": {\n        \"url\": \"https://contentcaddy.io?utm_source=reqres&utm_medium=json&utm_campaign=referral\",\n        \"text\": \"Tired of writing endless social media content? Let Content Caddy generate it for you.\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "getUsersTest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/api/users?page=2",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 OK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/users?page=2",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"users"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 15 Jan 2025 17:54:52 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"group\":\"heroku-nel\",\"max_age\":3600,\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?ts=1736959561&sid=c4c9725f-1ab0-44d8-820f-430df2718e11&s=gLxlwGgN70qqBTVxhqvCwJLAFq6CvqdGJLmaCdR7Dc8%3D\"}]}"
+						},
+						{
+							"key": "Reporting-Endpoints",
+							"value": "heroku-nel=https://nel.heroku.com/reports?ts=1736959561&sid=c4c9725f-1ab0-44d8-820f-430df2718e11&s=gLxlwGgN70qqBTVxhqvCwJLAFq6CvqdGJLmaCdR7Dc8%3D"
+						},
+						{
+							"key": "Nel",
+							"value": "{\"report_to\":\"heroku-nel\",\"max_age\":3600,\"success_fraction\":0.005,\"failure_fraction\":0.05,\"response_headers\":[\"Via\"]}"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"440-ZjsmMKR8P3usr2uJZbOCGCxC3Uw\""
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=14400"
+						},
+						{
+							"key": "CF-Cache-Status",
+							"value": "HIT"
+						},
+						{
+							"key": "Age",
+							"value": "4131"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "9027bbc2fea8f282-IAD"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "br"
+						},
+						{
+							"key": "server-timing",
+							"value": "cfL4;desc=\"?proto=TCP&rtt=1760&min_rtt=1610&rtt_var=711&sent=2&recv=5&lost=0&retrans=0&sent_bytes=219&recv_bytes=965&delivery_rate=899378&cwnd=250&unsent_bytes=0&cid=0f5d23cf862f6c13&ts=16&x=0\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"page\": 2,\n    \"per_page\": 6,\n    \"total\": 12,\n    \"total_pages\": 2,\n    \"data\": [\n        {\n            \"id\": 7,\n            \"email\": \"michael.lawson@reqres.in\",\n            \"first_name\": \"Michael\",\n            \"last_name\": \"Lawson\",\n            \"avatar\": \"https://reqres.in/img/faces/7-image.jpg\"\n        },\n        {\n            \"id\": 8,\n            \"email\": \"lindsay.ferguson@reqres.in\",\n            \"first_name\": \"Lindsay\",\n            \"last_name\": \"Ferguson\",\n            \"avatar\": \"https://reqres.in/img/faces/8-image.jpg\"\n        },\n        {\n            \"id\": 9,\n            \"email\": \"tobias.funke@reqres.in\",\n            \"first_name\": \"Tobias\",\n            \"last_name\": \"Funke\",\n            \"avatar\": \"https://reqres.in/img/faces/9-image.jpg\"\n        },\n        {\n            \"id\": 10,\n            \"email\": \"byron.fields@reqres.in\",\n            \"first_name\": \"Byron\",\n            \"last_name\": \"Fields\",\n            \"avatar\": \"https://reqres.in/img/faces/10-image.jpg\"\n        },\n        {\n            \"id\": 11,\n            \"email\": \"george.edwards@reqres.in\",\n            \"first_name\": \"George\",\n            \"last_name\": \"Edwards\",\n            \"avatar\": \"https://reqres.in/img/faces/11-image.jpg\"\n        },\n        {\n            \"id\": 12,\n            \"email\": \"rachel.howell@reqres.in\",\n            \"first_name\": \"Rachel\",\n            \"last_name\": \"Howell\",\n            \"avatar\": \"https://reqres.in/img/faces/12-image.jpg\"\n        }\n    ],\n    \"support\": {\n        \"url\": \"https://contentcaddy.io?utm_source=reqres&utm_medium=json&utm_campaign=referral\",\n        \"text\": \"Tired of writing endless social media content? Let Content Caddy generate it for you.\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "loginByFile",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 1000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"janet.weaver@reqres.in\",\r\n    \"password\": \"helo\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/register",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 OK",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "2p0pI2whw/test register.json"
+							},
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/register",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"register"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 15 Jan 2025 18:20:32 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "36"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"group\":\"heroku-nel\",\"max_age\":3600,\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?ts=1736965232&sid=c4c9725f-1ab0-44d8-820f-430df2718e11&s=HV3cr02aUudC2WhWL1tATBJ%2FqZOz9KEQnUZtJYwxKOU%3D\"}]}"
+						},
+						{
+							"key": "Reporting-Endpoints",
+							"value": "heroku-nel=https://nel.heroku.com/reports?ts=1736965232&sid=c4c9725f-1ab0-44d8-820f-430df2718e11&s=HV3cr02aUudC2WhWL1tATBJ%2FqZOz9KEQnUZtJYwxKOU%3D"
+						},
+						{
+							"key": "Nel",
+							"value": "{\"report_to\":\"heroku-nel\",\"max_age\":3600,\"success_fraction\":0.005,\"failure_fraction\":0.05,\"response_headers\":[\"Via\"]}"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"24-C1UjXwpC0NjT74MWWUg3/jq0pas\""
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						},
+						{
+							"key": "CF-Cache-Status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "9027e15cfe4f82da-IAD"
+						},
+						{
+							"key": "server-timing",
+							"value": "cfL4;desc=\"?proto=TCP&rtt=1953&min_rtt=1820&rtt_var=777&sent=3&recv=5&lost=0&retrans=0&sent_bytes=219&recv_bytes=1075&delivery_rate=795604&cwnd=250&unsent_bytes=0&cid=10ac95979d090f76&ts=169&x=0\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 2,\n    \"token\": \"QpwL5tke4Pnpja7X2\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "https://reqres.in",
+			"type": "string"
+		},
+		{
+			"key": "email",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "password",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
